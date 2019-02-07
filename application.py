@@ -275,7 +275,7 @@ def CatalogItemsJSON(category_id):
 @app.route('/catalog/<int:category_id>/items/<int:item_id>/JSON')
 def menuItemJSON(category_id, item_id):
     session = DBSession()
-    Item = session.query(items).filter_by(id=item_id).one()
+    Item = session.query(Items).filter_by(id=item_id).one()
     return jsonify(Item=Item.serialize)
 
 
@@ -296,10 +296,6 @@ def showCategories():
     if 'username' not in login_session:
         return render_template('publicitems.html', categories=categories, category = category)
     else:
-        if login_session['picture'] != []:
-            picture = login_session['picture']
-        else:
-            picture = []
         return render_template('items.html', categories=categories, category = category, picture = picture)
 
 # Create a new catalog
@@ -367,6 +363,7 @@ def deleteCategory(category_id):
 
 
 @app.route('/catalog/<int:category_id>/')
+@app.route('/catalog/<int:category_id>/items')
 def showItems(category_id):
     session = DBSession()
     categories = session.query(Category).order_by(asc(Category.name))
@@ -377,13 +374,9 @@ def showItems(category_id):
     if 'username' not in login_session or creator.id != login_session['user_id']:
         return render_template('publicitems.html', items=items, category=category, categories=categories, creator=creator)
     else:
-        if login_session['picture'] != []:
-            picture = login_session['picture']
-        else:
-            picture = []
-        return render_template('items.html', items=items, category=category, categories=categories, picture = picture)
+        return render_template('items.html', items=items, category=category, categories=categories)
 
-@app.route('/catalog/<int:category_id>/<int:item_id>/description')
+@app.route('/catalog/<int:category_id>/items/<int:item_id>/description')
 def showDescription(category_id,item_id):
         session = DBSession()
         category = session.query(Category).filter_by(id=category_id).one()
@@ -392,7 +385,7 @@ def showDescription(category_id,item_id):
         return render_template('description.html', item = item, category_id = category_id, item_id = item.id, category = category)
 
 # Create a new items item
-@app.route('/catalog/<int:category_id>/item/new/', methods=['GET', 'POST'])
+@app.route('/catalog/<int:category_id>/items/new/', methods=['GET', 'POST'])
 def newItem(category_id):
     session = DBSession()
     if 'username' not in login_session:
@@ -412,7 +405,7 @@ def newItem(category_id):
 # Edit a items item
 
 
-@app.route('/catalog/<int:category_id>/<int:item_id>/edit', methods=['GET', 'POST'])
+@app.route('/catalog/<int:category_id>/items/<int:item_id>/edit', methods=['GET', 'POST'])
 def editItem(category_id, item_id):
     session = DBSession()
     if 'username' not in login_session:
@@ -435,7 +428,7 @@ def editItem(category_id, item_id):
 
 
 # Delete a items item
-@app.route('/catalog/<int:category_id>/<int:item_id>/delete', methods=['GET', 'POST'])
+@app.route('/catalog/<int:category_id>/items/<int:item_id>/delete', methods=['GET', 'POST'])
 def deleteItem(category_id, item_id):
     session = DBSession()
     if 'username' not in login_session:

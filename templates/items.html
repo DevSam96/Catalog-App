@@ -66,7 +66,7 @@
 				  <li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('newItem', category_id = category.id )}}">Add an item</a>
 				  <li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('editCategory', category_id = category.id )}}">Edit Category</a>
 				  <li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('deleteCategory', category_id = category.id )}}">Delete Category</a>
-						<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showCategories')}}">Back</a></li>
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showCategories')}}">Back</a></li>
 				{%else%}
 				<ul data-menu="submenu-{{category.id}}" id="submenu-{{category.id}}" class="menu__level" tabindex="-1" role="menu" aria-label="{{category.name}}">
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('newItem', category_id = category.id )}}">Add an item</a></li>
