@@ -1,0 +1,142 @@
+{%block main%}
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Catalog App</title>
+	<meta name="description" content="Catalog App" />
+	<meta name="keywords" content="blueprint, template, html, css, menu, responsive, mobile-friendly" />
+	<meta name="author" content="Codrops, Samuele Guerra" />
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+	<!-- food icons -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='organicfoodicons.css') }}" />
+	<!-- demo styles -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='demo.css') }}" />
+	<!-- menu styles -->
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='component.css') }}" />
+	<script src="{{ url_for('static', filename='modernizr-custom.js') }}"></script>
+</head>
+
+<body>
+	<!-- Main container -->
+	<div class="container">
+		<!-- Blueprint header -->
+		<header class="bp-header cf">
+			<div class="dummy-logo">
+				<div class="dummy-icon foodicon foodicon--coconut"></div>
+				<h2 class="dummy-heading">Catalog</h2>
+			</div>
+			<div class="bp-header__main">
+				<h1 class="bp-header__title">Catalog App</h1>
+				<nav class="bp-nav">
+					{%if 'username' not in session %}
+			<a href="{{url_for('showLogin')}}"><span>Click Here to Login </span></a>
+			{% else %}
+			<a href="{{url_for('disconnect')}}"><span>Logout</span></a>
+			{% endif %}
+				</nav>
+			</div>
+		</header>
+		<button class="action action--open" aria-label="Open Menu"><span class="icon icon--menu"></span></button>
+		<nav id="ml-menu" class="menu">
+			<button class="action action--close" aria-label="Close Menu"><span class="icon icon--cross"></span></button>
+			<div class="menu__wrap">
+				<ul data-menu="main" class="menu__level" tabindex="-1" role="menu" aria-label="All">
+					{%block catg%}
+					{% for category in categories %}
+					<li class="menu__item" role="menuitem"><a class="menu__link" data-submenu="submenu-{{category.id}}" aria-owns="submenu-{{category.id}}" href="{{url_for('showItems', category_id = category.id)}}">{{category.name}}</a></li>
+          {% endfor %}
+					{%endblock%}
+					{%block addcategory%}
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('newCategory')}}">Add Category</a></li>
+          {%endblock%}
+				</ul>
+				<!-- Submenu 1 -->
+				{%block itm%}
+				{% if items !=[] %}
+				<ul data-menu="submenu-{{category.id}}" id="submenu-{{category.id}}" class="menu__level" tabindex="-1" role="menu" aria-label="{{category.name}}">
+          {% for i in items %}
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showDescription', category_id = i.category_id, item_id = i.id)}}">{{i.name}}</a>
+				{% endfor %}
+						<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showCategories')}}">Back</a></li>
+				{%else%}
+				<ul data-menu="submenu-{{category.id}}" id="submenu-{{category.id}}" class="menu__level" tabindex="-1" role="menu" aria-label="{{category.name}}">
+					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showCategories')}}">Back</a></li>
+        {% endif %}
+			{%endblock%}
+			</div>
+		</nav>
+
+		<div class="content">
+			{%endblock%}
+			<div class = 'flash'>
+								{% with messages = get_flashed_messages() %}
+						{% if messages %}
+
+							<ul>
+							{% for message in messages %}
+									<li> <strong> {{ message }} </strong> </li>
+							{% endfor %}
+							</ul>
+							{% endif %}
+					{% endwith %}
+
+			</div>
+			{%block content%}
+			{%endblock%}
+			{%block script%}
+			<!-- Ajax loaded content here -->
+		</div>
+	</div>
+	<!-- /view -->
+	<script src="{{ url_for('static', filename='classie.js') }}"></script>
+	<script src="{{ url_for('static', filename='main.js') }}"></script>
+	<script>
+	(function() {
+		var menuEl = document.getElementById('ml-menu'),
+			mlmenu = new MLMenu(menuEl, {
+				breadcrumbsCtrl : true, // show breadcrumbs
+				initialBreadcrumb : '<a style= pointer-events:auto href="{{url_for('showCategories')}}">ALL</a>', // initial breadcrumb text
+				backCtrl : false, // show back button
+				// itemsDelayInterval : 60, // delay between each menu item sliding animation
+				onItemClick: loadData // callback: item that doesn´t have a submenu gets clicked - onItemClick([event], [inner HTML of the clicked item])
+			});
+
+		// mobile menu toggle
+		var openMenuCtrl = document.querySelector('.action--open'),
+			closeMenuCtrl = document.querySelector('.action--close');
+
+		openMenuCtrl.addEventListener('click', openMenu);
+		closeMenuCtrl.addEventListener('click', closeMenu);
+
+		function openMenu() {
+			classie.add(menuEl, 'menu--open');
+			closeMenuCtrl.focus();
+		}
+
+		function closeMenu() {
+			classie.remove(menuEl, 'menu--open');
+			openMenuCtrl.focus();
+		}
+
+		// simulate grid content loading
+		var gridWrapper = document.querySelector('.content');
+
+		function loadData(ev, itemName) {
+			closeMenu();
+			gridWrapper.innerHTML = '';
+			classie.add(gridWrapper, 'content--loading');
+			setTimeout(function() {
+				classie.remove(gridWrapper, 'content--loading');
+				openMenu()
+			}, 700);
+		}
+	})();
+	</script>
+</body>
+
+</html>
+{%endblock%}

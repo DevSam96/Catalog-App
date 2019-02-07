@@ -1,0 +1,11 @@
+{% extends "items.html" %}
+{%block addcategory%}
+<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showDescription', category_id = category_id, item_id = item_id)}}">{{item.name}}</a>
+<a style ="padding-left: 23px;" href='{{url_for('editItem', category_id = category.id, item_id=item_id ) }}'>Edit</a>
+<a href='{{url_for('deleteItem', category_id = category.id, item_id=item_id ) }}'>Delete</a></li>
+<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showCategories')}}">Back</a></li>
+{%endblock%}
+{%block content%}
+<h2 style="margin-left:30%;"> {{item.name}} description</h2>
+			<p style="margin-left:5%;">{{item.description}}
+{% endblock %}

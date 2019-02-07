@@ -1,0 +1,25 @@
+{% extends "items.html" %}
+{%block catg%}
+{%endblock%}
+{%block itm%}
+{%endblock%}
+{%block content%}
+{%block addcategory%}
+{%endblock%}
+		<div class="col-md-11 col-md-offset-1 padding-none">
+			<h1>Edit Item</h1>
+		</div>
+			<form style="display:inline" action="#" method = "post">
+					<label for="name">Name:</label>
+					</br>
+					<input type ="text" maxlength="100" class="form-control" name="name" value="{{item.name }}">
+          </br></br></br>
+					<label for="description">Description:</label></br>
+					<textarea class="form-control" maxlength="250" rows="3" name="description">{{item.description}}</textarea>
+          </br></br>
+					<button type="submit" class="action button" id="submit" type="submit">Save</button>
+			</form>
+			<a href = '{{url_for('showCategories')}}'>
+				<button type="submit" class="action button" style="display:inline" id="submit" type="submit">Cancel</button>
+			</a>
+{% endblock %}

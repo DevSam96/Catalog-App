@@ -1,0 +1,21 @@
+{% extends "items.html" %}
+{%block catg%}
+{%endblock%}
+{%block itm%}
+{%endblock%}
+{%block content%}
+{%block addcategory%}
+{%endblock%}
+
+<h2> Are you sure you want to delete {{category.name}}? </h2>
+<h4> This will delete all items associated with the category</h4>
+<form style="display:inline" action="#" method = 'post'>
+	<button type="submit" class="action button" id="submit" type="submit">
+	<span></span>Delete</button>
+</form>
+<a style="display:inline" href = '{{url_for('showCategories')}}'>
+	<button type="submit" class="action button" id="submit" type="submit">
+	<span></span> Cancel</button>
+</a>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "items.html" %}
+{%block catg%}
+{%endblock%}
+{%block itm%}
+{%endblock%}
+{%block content%}
+{%block addcategory%}
+{%endblock%}
+			<h1>Edit {{category.name}}</h1>
+			<form style="display:inline" action="{{ url_for('editCategory',category_id = category.id)}}" method = "post">
+					<label for="name">Name:</label>
+					<input type ="text" class="form-control" name="name" value="{{category.name }}">
+					<button type="submit" class="action button" id="submit" type="submit">
+					<span class="action button"></span>Save</button>
+			</form>
+					<a href = '{{url_for('showCategories')}}'>
+						<button type="submit" class="action button" id="submit" type="submit">
+						<span class="action button"></span> Cancel</button>
+					</a>
+
+{% endblock %}
