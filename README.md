@@ -9,6 +9,7 @@ Step to run the application
 in the vagrant environment go to the directory where application.py file is.
 
 in ```client_secrets.json``` replace ```YOUR_GOOGLE_OAUTH2_CLIENT_ID``` with your google client id
+
 in ```/templates/login.html``` replace ```YOUR_GOOGLE_OAUTH2_CLIENT_ID``` and ```YOUR_GOOGLE_OAUTH2_CLIENT_SECRET``` with your google client id and client secret
 
 run ```python models.py``` to generate the Database
