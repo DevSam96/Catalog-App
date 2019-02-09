@@ -4,7 +4,7 @@ It has been developed and tested to run in the vagrant ubuntu environment provid
 
 Google account required for authentication
 
-Step to run the application
+Documentation
 =========
 in the vagrant environment go to the directory where application.py file is.
 
@@ -19,7 +19,7 @@ run ```python application.py``` file to run the application
 open http://localhost:8000 in you web browser
 
 
-Template used
+Template
 =========
 Blueprint: Multi-Level Menu
 
