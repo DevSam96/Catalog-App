@@ -54,19 +54,6 @@
 					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('newCategory')}}">Add Category</a></li>
           {%endblock%}
 				</ul>
-				<!-- Submenu 1 -->
-				{%block itm%}
-				{% if items !=[] %}
-				<ul data-menu="submenu-{{category.id}}" id="submenu-{{category.id}}" class="menu__level" tabindex="-1" role="menu" aria-label="{{category.name}}">
-          {% for i in items %}
-					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showDescription', category_id = i.category_id, item_id = i.id)}}">{{i.name}}</a>
-				{% endfor %}
-						<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showCategories')}}">Back</a></li>
-				{%else%}
-				<ul data-menu="submenu-{{category.id}}" id="submenu-{{category.id}}" class="menu__level" tabindex="-1" role="menu" aria-label="{{category.name}}">
-					<li class="menu__item" role="menuitem"><a class="menu__link" href="{{url_for('showCategories')}}">Back</a></li>
-        {% endif %}
-			{%endblock%}
 			</div>
 		</nav>
 

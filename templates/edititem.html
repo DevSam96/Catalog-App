@@ -19,7 +19,7 @@
           </br></br>
 					<button type="submit" class="action button" id="submit" type="submit">Save</button>
 			</form>
-			<a href = '{{url_for('showCategories')}}'>
+			<a href = '{{url_for('showItems', category_id = category_id)}}'>
 				<button type="submit" class="action button" style="display:inline" id="submit" type="submit">Cancel</button>
 			</a>
 {% endblock %}
