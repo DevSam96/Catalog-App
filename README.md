@@ -2,7 +2,7 @@ This web application is a project for Udacity Fullstack Nanodegree
 =========
 It has been developed and tested to run in the vagrant ubuntu environment provided for the Nanodegree
 
-Facebook or Google account required for authentication
+Google account required for authentication
 
 Step to run the application
 =========
