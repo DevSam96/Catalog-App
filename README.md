@@ -16,7 +16,7 @@ run ```python models.py``` to generate the Database
 
 run ```python application.py``` file to run the application
 
-open http://localhost:5000 in you web browser
+open http://localhost:8000 in you web browser
 
 
 Template used
