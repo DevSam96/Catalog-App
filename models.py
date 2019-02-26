@@ -53,7 +53,7 @@ class Items(Base):
         }
 
 
-engine = create_engine('sqlite:///catalog.db')
+engine = create_engine('sqlite:////home/ubuntu/Catalog-App/catalog.db')
 
 
 Base.metadata.create_all(engine)

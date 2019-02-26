@@ -16,11 +16,12 @@ import requests
 app = Flask(__name__)
 
 CLIENT_ID = json.loads(
-    open('client_secrets.json', 'r').read())['web']['client_id']
+    open('/home/ubuntu/Catalog-App/client_secrets.json', 'r').read())['web']['client_id']
 APPLICATION_NAME = "Catalog App"
 
 # Connect to Database and create database session
-engine = create_engine('sqlite:///catalog.db')
+
+engine = create_engine('sqlite:////home/ubuntu/Catalog-App/catalog.db')
 Base.metadata.bind = engine
 
 DBSession = sessionmaker(bind=engine)
@@ -49,7 +50,7 @@ def gconnect():
 
     try:
         # Upgrade the authorization code into a credentials object
-        oauth_flow = flow_from_clientsecrets('client_secrets.json', scope='')
+        oauth_flow = flow_from_clientsecrets('/home/ubuntu/Catalog-App/client_secrets.json', scope='')
         oauth_flow.redirect_uri = 'postmessage'
         credentials = oauth_flow.step2_exchange(code)
     except FlowExchangeError:
@@ -403,7 +404,7 @@ def deleteItem(category_id, item_id):
         return redirect(url_for('showItems', category_id=category_id))
     else:
         return render_template(
-            'deleteItem.html', item=itemToDelete, category_id=category_id)
+            'deleteitem.html', item=itemToDelete, category_id=category_id)
 
 
 # Disconnect based on provider
