@@ -18,6 +18,29 @@ run ```python application.py``` file to run the application
 
 open http://localhost:8000 in you web browser
 
+Demo
+======
+
+IP: 63.35.23.91
+URL: http://ubuntusecurity.tk/
+
+Packages installed
+======
+apache2
+libapache2-mod-wsgi
+git
+python
+python-flask
+python-sqlalchemy
+python-requests
+python-oauth2client
+
+Setup instructions
+======
+
+Follow the instructions here to setup your application with apache2: http://flask.pocoo.org/docs/0.12/deploying/mod_wsgi/
+
+make sure to grant www-data user ownership of your catalog.db file
 
 Template
 =========
