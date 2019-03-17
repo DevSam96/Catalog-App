@@ -9,7 +9,7 @@
 			<h1>Edit {{category.name}}</h1>
 			<form style="display:inline" action="{{ url_for('editCategory',category_id = category.id)}}" method = "post">
 					<label for="name">Name:</label>
-					<input type ="text" class="form-control" name="name" value="{{category.name }}">
+					<input type ="text" class="form-control" name="name" value="{{category.name }}" required>
 					<button type="submit" class="action button" id="submit" type="submit">
 					<span class="action button"></span>Save</button>
 			</form>
