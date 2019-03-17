@@ -4,21 +4,22 @@ It has been developed and tested to run in the vagrant ubuntu environment provid
 
 Google account required for authentication
 
-Step to run the application
+Documentation
 =========
 in the vagrant environment go to the directory where application.py file is.
 
 in ```client_secrets.json``` replace ```YOUR_GOOGLE_OAUTH2_CLIENT_ID``` with your google client id
+
 in ```/templates/login.html``` replace ```YOUR_GOOGLE_OAUTH2_CLIENT_ID``` and ```YOUR_GOOGLE_OAUTH2_CLIENT_SECRET``` with your google client id and client secret
 
 run ```python models.py``` to generate the Database
 
 run ```python application.py``` file to run the application
 
-open http://localhost:5000 in you web browser
+open http://localhost:8000 in you web browser
 
 
-Template used
+Template
 =========
 Blueprint: Multi-Level Menu
 
